@@ -1,0 +1,27 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pylint = "*"
+black = "*"
+pytest = "*"
+pytest-cov = "*"
+setuptools = "*"
+wheel = "*"
+twine = "*"
+pytest-benchmark = "*"
+
+[packages]
+feather-format = "*"
+geopandas = "*"
+shapely = "*"
+fiona = "*"
+numpy = "*"
+
+[requires]
+python_version = "3.7"
+
+[pipenv]
+allow_prereleases = true
