@@ -1,8 +1,13 @@
 # geofeather
 
+[![Build Status](https://travis-ci.org/brendan-ward/geofeather.svg?branch=master)](https://travis-ci.org/brendan-ward/geofeather)
+[![Coverage Status](https://coveralls.io/repos/github/brendan-ward/geofeather/badge.svg?branch=master)](https://coveralls.io/github/brendan-ward/geofeather?branch=master)
+
 A faster file-based format for geometries with `geopandas`.
 
 This project capitalizes on the very fast [`feather`](https://github.com/wesm/feather) file format to store geometry (points, lines, polygons) data for interoperability with `geopandas`.
+
+[Introductory post](https://medium.com/@brendan_ward/introducing-geofeather-a-python-library-for-faster-geospatial-i-o-with-geopandas-341120d45ee5).
 
 ## Why does this exist?
 
@@ -19,6 +24,8 @@ The `feather` format works brilliantly for standard `pandas` data frames. In ord
 We store the coordinate reference system using JSON format in a sidecar file `.crs`.
 
 ## Installation
+
+Available on PyPi at: https://pypi.org/project/geofeather/
 
 `pip install geofeather`
 
