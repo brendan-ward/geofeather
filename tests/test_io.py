@@ -45,3 +45,29 @@ def test_missing_crs_warning(tmpdir, points_wgs84):
 
         assert df.crs is None
 
+
+def test_lines_geofeather(tmpdir, lines_wgs84):
+    """Confirm that we can round-trip lines to / from feather file"""
+
+    filename = tmpdir / "lines_wgs84.feather"
+    to_geofeather(lines_wgs84, filename)
+
+    assert os.path.exists(filename)
+
+    df = from_geofeather(filename)
+    assert_frame_equal(df, lines_wgs84)
+    assert df.crs == lines_wgs84.crs
+
+
+def test_lines_geofeather(tmpdir, polygons_wgs84):
+    """Confirm that we can round-trip polygons to / from feather file"""
+
+    filename = tmpdir / "polygons_wgs84.feather"
+    to_geofeather(polygons_wgs84, filename)
+
+    assert os.path.exists(filename)
+
+    df = from_geofeather(filename)
+    assert_frame_equal(df, polygons_wgs84)
+    assert df.crs == polygons_wgs84.crs
+
