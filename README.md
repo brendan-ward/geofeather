@@ -42,7 +42,7 @@ to_geofeather(my_gdf, 'test.feather')
 ### Read
 
 ```
-my_gdf = from_feather('test.feather')
+my_gdf = from_geofeather('test.feather')
 
 ```
 
