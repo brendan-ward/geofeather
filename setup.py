@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name="geofeather",
-    version="0.1.0",
+    version="0.2.0",
     packages=["geofeather"],
     url="https://github.com/brendan-ward/geofeather",
     license="MIT",

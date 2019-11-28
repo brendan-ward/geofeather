@@ -49,3 +49,18 @@ my_gdf = from_geofeather('test.feather')
 ## Indexes
 
 Right now, indexes are not supported in `feather` files. In order to get around this, simply reset your index before calling `to_geofeather`.
+
+## Changes
+
+### 0.2.0 (in progress)
+
+-   allow reading a subset of columns from a feather file
+-   store geometry in 'geometry' column instead of 'wkb' column (simplification to avoid renaming columns)
+
+### 0.1.0
+
+-   Initial release
+
+## Credits
+
+Everything that makes this fast is due to the hard work of contributors to `pyarrow`, `geopandas`, and `shapely`.
