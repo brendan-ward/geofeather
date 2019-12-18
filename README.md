@@ -52,7 +52,7 @@ Right now, indexes are not supported in `feather` files. In order to get around 
 
 ## Changes
 
-### 0.2.0 (in progress)
+### 0.2.0
 
 -   allow reading a subset of columns from a feather file
 -   store geometry in 'geometry' column instead of 'wkb' column (simplification to avoid renaming columns)
