@@ -46,11 +46,42 @@ my_gdf = from_geofeather('test.feather')
 
 ```
 
+### TEMPORARY
+
+[`pygeos`](https://github.com/pygeos/pygeos) provides much faster operations of geospatial operations over arrays of geospatial data.
+
+`geopandas` is in the process of migrating to using `pygeos` geometries as its internal data storage instead of `shapely` objects.
+
+Until `pygeos` is fully integrated, there are shims in `geofeather` to support interoperability with pandas DataFrames containing `pygeos` geometries. If you are already using `pygeos` against data you read from `geofeather`, using the following shims will generate 3-7x speedups reading and writing data compared to `geofeather` reading into GeoDataFrames.
+
+Internally, the feather file is identical to the one created above.
+
+`pygeos` is required in order to use this functionality.
+
+WARNING: this will be deprecated as soon as `pygeos` is integrated into `geopandas`.
+
+```
+from geofeather.pygeos import to_geofeather, from_geofeather
+
+# given a DataFrame df containing pygeos geometries in 'geometry' column
+# and a crs object
+
+to_geofeather(df, 'test.feather', crs=crs)
+
+df = from_geofeather('test.geofeather')
+```
+
+Note: no CRS information is returned when reading from geofeather into a DataFrame, in order to keep the function signature the same as above `from_geofeather`
+
 ## Indexes
 
 Right now, indexes are not supported in `feather` files. In order to get around this, simply reset your index before calling `to_geofeather`.
 
 ## Changes
+
+### NEXT
+
+-   allow serializing to / from pandas DataFrames containing `pygeos` geometries (see notes above).
 
 ### 0.2.0
 

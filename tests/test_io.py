@@ -59,7 +59,7 @@ def test_lines_geofeather(tmpdir, lines_wgs84):
     assert df.crs == lines_wgs84.crs
 
 
-def test_lines_geofeather(tmpdir, polygons_wgs84):
+def test_polygons_geofeather(tmpdir, polygons_wgs84):
     """Confirm that we can round-trip polygons to / from feather file"""
 
     filename = tmpdir / "polygons_wgs84.feather"
