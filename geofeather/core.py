@@ -26,7 +26,11 @@ def _to_geofeather(df, path, crs):
     # write the crs to an associated file
     if crs:
         with open("{}.crs".format(path), "w") as crsfile:
-            if isinstance(crs, str):
+            # geopandas CRS is now pyproj.CRS object
+            if hasattr(crs, "to_wkt"):
+                crs = {"wkt": crs.to_wkt()}
+            # fallbackfor older versions
+            elif isinstance(crs, str):
                 crs = {"proj4": crs}
             crsfile.write(json.dumps(crs))
 
@@ -57,7 +61,9 @@ def _from_geofeather(path, columns=None):
     crsfilename = "{}.crs".format(path)
     if os.path.exists(crsfilename):
         crs = json.loads(open(crsfilename).read())
-        if "proj4" in crs:
+        if "wkt" in crs:
+            crs = crs["wkt"]
+        elif "proj4" in crs:
             crs = crs["proj4"]
     else:
         warnings.warn(
