@@ -18,15 +18,31 @@ def test_points_geofeather(tmpdir, points_wgs84):
     assert df.crs == points_wgs84.crs
 
 
-def test_points_geofeather_proj4(tmpdir, points_albers_conus):
+def test_points_geofeather_proj4(tmpdir, points_albers_conus_proj4):
     """Confirm that we can round-trip points to / from feather file with a proj4 defined CRS"""
 
     filename = tmpdir / "points_albers_conus.feather"
-    to_geofeather(points_albers_conus, filename)
+    to_geofeather(points_albers_conus_proj4, filename)
 
     df = from_geofeather(filename)
-    assert_frame_equal(df, points_albers_conus)
-    assert df.crs == points_albers_conus.crs
+    assert_frame_equal(df, points_albers_conus_proj4)
+
+    # equality comparision fails for CRS object constructed from proj4, even though they are still the same
+    if hasattr(df.crs, "to_proj4"):
+        assert df.crs.to_proj4() == points_albers_conus_proj4.crs.to_proj4()
+    else:
+        assert df.crs == points_albers_conus_proj4.crs
+
+
+def test_points_geofeather_wkt(tmpdir, points_albers_conus_wkt):
+    """Confirm that we can round-trip points to / from feather file with a wkt defined CRS"""
+
+    filename = tmpdir / "points_albers_conus.feather"
+    to_geofeather(points_albers_conus_wkt, filename)
+
+    df = from_geofeather(filename)
+    assert_frame_equal(df, points_albers_conus_wkt)
+    assert df.crs == points_albers_conus_wkt.crs
 
 
 def test_missing_crs_warning(tmpdir, points_wgs84):
