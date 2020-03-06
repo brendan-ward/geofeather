@@ -3,7 +3,6 @@ import os
 import warnings
 
 from feather import read_dataframe
-import fiona
 from geopandas import GeoDataFrame
 
 from pandas import DataFrame

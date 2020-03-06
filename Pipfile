@@ -17,7 +17,6 @@ pytest-benchmark = "*"
 feather-format = "*"
 geopandas = "*"
 shapely = "*"
-fiona = "*"
 numpy = "*"
 pygeos = "*"
 

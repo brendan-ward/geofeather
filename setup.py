@@ -12,7 +12,7 @@ setup(
     description="Fast file-based format for geometries with Geopandas",
     long_description_content_type="text/markdown",
     long_description=open("README.md").read(),
-    install_requires=["feather-format", "fiona", "geopandas", "numpy", "shapely"],
+    install_requires=["feather-format", "geopandas", "numpy", "shapely"],
     tests_require=["pygeos", "pytest", "pytest-cov", "pytest-benchmark"],
     include_package_data=True,
 )
