@@ -4,6 +4,7 @@ python:
     - "3.7"
     - "3.8"
 install:
+    - "pip install geopandas>=0.7.0"
     - "pip install -e ."
     - "pip install pygeos pytest pytest-cov pytest-benchmark"
     - "pip install coveralls>=1.1"
