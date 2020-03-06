@@ -1,6 +1,6 @@
 import os
 
-from geofeather import to_geofeather, from_geofeather, to_shp
+from geofeather import to_geofeather, from_geofeather
 from pandas.util.testing import assert_frame_equal
 import pytest
 
