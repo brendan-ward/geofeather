@@ -16,8 +16,6 @@ pytest-benchmark = "*"
 [packages]
 feather-format = "*"
 geopandas = "*"
-shapely = "*"
-numpy = "*"
 pygeos = "*"
 
 [requires]
