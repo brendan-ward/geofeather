@@ -27,6 +27,9 @@ def to_geofeather(df, path, crs=None):
     import_optional_dependency("pygeos", extra="pygeos is required for pygeos support.")
     from pygeos import to_wkb
 
+    # fetch attribute from Pandas DataFrame if we previously added it there
+    crs = crs or getattr(df, "crs", None)
+
     df = DataFrame(df.copy())
     df["geometry"] = to_wkb(df.geometry)
 
@@ -75,5 +78,7 @@ def from_geofeather(path, columns=None):
 
     df["geometry"] = from_wkb(df.geometry)
 
-    # NOTE: no CRS information is returned at this time
+    # add crs attribute to data frame
+    df.crs = crs
+
     return df

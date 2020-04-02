@@ -1,7 +1,7 @@
 import os
 
 from geofeather import to_geofeather, from_geofeather
-from pandas.util.testing import assert_frame_equal
+from pandas.testing import assert_frame_equal
 import pytest
 
 
@@ -86,4 +86,3 @@ def test_polygons_geofeather(tmpdir, polygons_wgs84):
     df = from_geofeather(filename)
     assert_frame_equal(df, polygons_wgs84)
     assert df.crs == polygons_wgs84.crs
-

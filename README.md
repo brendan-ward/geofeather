@@ -79,6 +79,10 @@ Right now, indexes are not supported in `feather` files. In order to get around 
 
 ## Changes
 
+### NEXT
+
+-   add `crs` attribute to pandas DataFrame containing `pygeos` geometries
+
 ### 0.3.0
 
 -   allow serializing to / from pandas DataFrames containing `pygeos` geometries (see notes above).
