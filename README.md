@@ -1,7 +1,22 @@
-# geofeather
+# DEPRECATED - geofeather
 
 [![Build Status](https://travis-ci.org/brendan-ward/geofeather.svg?branch=master)](https://travis-ci.org/brendan-ward/geofeather)
 [![Coverage Status](https://coveralls.io/repos/github/brendan-ward/geofeather/badge.svg?branch=master)](https://coveralls.io/github/brendan-ward/geofeather?branch=master)
+
+## DEPRECATION NOTICE
+
+The core functionality in `geofeather` has been integrated directly into GeoPandas version 0.8.0.
+See [docs](https://geopandas.readthedocs.io/en/latest/io.html#apache-parquet-and-feather-file-formats) for instructions about how to use `to_feather` / `read_feather` in GeoPandas.
+
+You are encouraged to use GeoPandas for this functionality. According to early benchmarks, it is even faster!
+
+NOTE: you are not able to read `geofeather`-created files directly into GeoPandas via `read_feather`; you will first need to use `geofeather` to read into a GeoDataFrame, then you can write that to a new feather file.
+
+I may release an updated version to help migrate from `geofeather` to the new functionality in GeoPandas. GeoPandas uses a metadata schema stored within the feather file to hold the CRS information and other details, which makes the new representation more compact (no more sidecar files for CRS info).
+
+If you need help converting files created using `geofeather` for use in GeoPandas, please create an issue.
+
+## Purpose
 
 A faster file-based format for geometries with `geopandas`.
 

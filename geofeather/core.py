@@ -2,11 +2,11 @@ import json
 import os
 import warnings
 
-from feather import read_dataframe
+from pyarrow.feather import read_table
 from geopandas import GeoDataFrame
+from geopandas.array import from_wkb
 
 from pandas import DataFrame
-from shapely.wkb import loads
 
 
 def _to_geofeather(df, path, crs):
@@ -71,7 +71,9 @@ def _from_geofeather(path, columns=None):
             )
         )
 
-    return read_dataframe(path, columns=columns), crs
+    # TODO: use geopandas feather I/O instead
+
+    return read_table(path, columns=columns).to_pandas(), crs
 
 
 def to_geofeather(df, path):
@@ -138,6 +140,7 @@ def from_geofeather(path, columns=None):
     df = df.rename(columns={"wkb": "geometry"})
 
     # decode the WKB geometry back to shapely objects
-    df.geometry = df.geometry.apply(lambda wkb: loads(wkb))
+    # df.geometry = df.geometry.apply(lambda wkb: loads(wkb))
+    df.geometry = from_wkb(df.geometry, crs=crs)
 
-    return GeoDataFrame(df, geometry="geometry", crs=crs)
+    return GeoDataFrame(df, geometry="geometry")
